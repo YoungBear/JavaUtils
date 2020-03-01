@@ -19,6 +19,7 @@
         <!-- 第三方软件版本 -->
         <junit.version>4.12</junit.version>
         <logback.version>1.2.3</logback.version>
+        <apache.commons.version>1.20</apache.commons.version>
     </properties>
 
     <dependencies>
@@ -35,8 +36,29 @@
             <version>${logback.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>${apache.commons.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
