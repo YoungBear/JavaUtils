@@ -1,3 +1,24 @@
+# 解压缩
+
+使用apache的`commons-compress`，可支持.zip,.tar.gz等文件的解压缩，参考[官方文档](https://commons.apache.org/proper/commons-compress/index.html)。
+
+## 1. 解压缩.tar.gz文件
+
+
+
+### 1.1 引用 `commons-compress`
+
+```xml
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>${apache.commons.version}</version>
+        </dependency>
+```
+
+### 1.2 代码实现
+
+```java
 package com.ysx.utils.file;
 
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
@@ -92,3 +113,6 @@ public class DecompressUtils {
         }
     }
 }
+
+```
+
