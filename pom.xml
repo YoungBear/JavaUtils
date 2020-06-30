@@ -20,6 +20,7 @@
         <junit.version>4.12</junit.version>
         <logback.version>1.2.3</logback.version>
         <apache.commons.version>1.20</apache.commons.version>
+        <bcprov-jdk15on.version>1.65</bcprov-jdk15on.version>
     </properties>
 
     <dependencies>
@@ -47,6 +48,13 @@
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>${bcprov-jdk15on.version}</version>
+        </dependency>
+
 
     </dependencies>
 
