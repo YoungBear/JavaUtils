@@ -20,7 +20,7 @@
         <junit.version>4.13.1</junit.version>
         <logback.version>1.2.3</logback.version>
         <apache.commons.version>1.20</apache.commons.version>
-        <bcprov-jdk15on.version>1.65</bcprov-jdk15on.version>
+        <bcprov-jdk15on.version>1.68</bcprov-jdk15on.version>
     </properties>
 
     <dependencies>
