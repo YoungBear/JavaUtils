@@ -1,0 +1,15 @@
+# OpenSSL 1.1.1h  22 Sep 2020
+
+# 生成一个3072bit的RSA私钥
+openssl genpkey -algorithm RSA-PSS -pkeyopt rsa_keygen_bits:3072 -pkeyopt rsa_keygen_pubexp:65537 -pkeyopt rsa_pss_keygen_md:sha256 -pkeyopt rsa_pss_keygen_mgf1_md:sha256 -pkeyopt rsa_pss_keygen_saltlen:32 -out rsa_pss_private_3072_restricted_nopassword.pem
+# 查看私钥
+openssl pkey -in rsa_pss_private_3072_restricted_nopassword.pem -text
+# 导出公钥
+openssl pkey -in rsa_pss_private_3072_restricted_nopassword.pem -out rsa_pss_public_3072_restricted_nopassword.pem -pubout
+
+# 生成一个口令保护的3072bit的RSA私钥 Hello@123
+openssl genpkey -aes256 -algorithm RSA-PSS -pkeyopt rsa_keygen_bits:3072 -pkeyopt rsa_keygen_pubexp:65537 -pkeyopt rsa_pss_keygen_md:sha256 -pkeyopt rsa_pss_keygen_mgf1_md:sha256 -pkeyopt rsa_pss_keygen_saltlen:32 -out rsa_pss_private_3072_restricted_password.pem
+# 查看私钥
+openssl pkey -in rsa_pss_private_3072_restricted_password.pem -text
+# 导出公钥
+openssl pkey -in rsa_pss_private_3072_restricted_password.pem -out rsa_pss_public_3072_restricted_password.pem -pubout
