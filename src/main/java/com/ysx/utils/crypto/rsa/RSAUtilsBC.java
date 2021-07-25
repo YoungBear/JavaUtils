@@ -12,10 +12,16 @@ import org.bouncycastle.pkcs.PKCS8EncryptedPrivateKeyInfo;
 import org.bouncycastle.pkcs.PKCSException;
 import org.bouncycastle.util.io.pem.PemObject;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.MGF1ParameterSpec;
+import java.security.spec.PSSParameterSpec;
 import java.security.spec.X509EncodedKeySpec;
 
 /**
@@ -26,12 +32,112 @@ import java.security.spec.X509EncodedKeySpec;
  * @github https://github.com/YoungBear
  * @description 使用BouncyCastle RSA 工具类
  * 参考：https://www.baeldung.com/java-read-pem-file-keys
- * todo 添加加解密，签名，验签方法
  */
 public class RSAUtilsBC {
 
+    /**
+     * 加密算法
+     */
+    private static final String ENCRYPT_ALGORITHM = "RSA/None/OAEPWithSHA-256AndMGF1Padding";
+
+    /**
+     * 签名算法 SHA256withRSA 算法，PSS 填充模式
+     */
+    private static final String SIGNATURE_ALGORITHM = "SHA256withRSA/PSS";
+
+    /**
+     * 签名填充盐值长度
+     */
+    private static final int SIGNATURE_SALT_LENGTH = 32;
+
+
     static {
         Security.addProvider(new BouncyCastleProvider());
+    }
+
+    /**
+     * 使用公钥加密
+     *
+     * @param publicKey 公钥
+     * @param data      待加密数据明文
+     * @return 密文
+     * @throws NoSuchPaddingException    异常
+     * @throws NoSuchAlgorithmException  异常
+     * @throws NoSuchProviderException   异常
+     * @throws InvalidKeyException       异常
+     * @throws IllegalBlockSizeException 异常
+     * @throws BadPaddingException       异常
+     */
+    public static byte[] encrypt(PublicKey publicKey, byte[] data)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        Cipher cipher = Cipher.getInstance(ENCRYPT_ALGORITHM, BouncyCastleProvider.PROVIDER_NAME);
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+        return cipher.doFinal(data);
+    }
+
+    /**
+     * 使用私钥解密
+     *
+     * @param privateKey 私钥
+     * @param cipherData 待解密的密文
+     * @return 明文
+     * @throws NoSuchPaddingException    异常
+     * @throws NoSuchAlgorithmException  异常
+     * @throws NoSuchProviderException   异常
+     * @throws InvalidKeyException       异常
+     * @throws IllegalBlockSizeException 异常
+     * @throws BadPaddingException       异常
+     */
+    public static byte[] decrypt(PrivateKey privateKey, byte[] cipherData)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        Cipher cipher = Cipher.getInstance(ENCRYPT_ALGORITHM, BouncyCastleProvider.PROVIDER_NAME);
+        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+        return cipher.doFinal(cipherData);
+    }
+
+    /**
+     * 签名
+     *
+     * @param privateKey 私钥
+     * @param data       数据
+     * @return 数据的签名值
+     * @throws NoSuchAlgorithmException           异常
+     * @throws NoSuchProviderException            异常
+     * @throws InvalidAlgorithmParameterException 异常
+     * @throws InvalidKeyException                异常
+     * @throws SignatureException                 异常
+     */
+    public static byte[] signature(PrivateKey privateKey, byte[] data) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, SignatureException {
+        Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM, BouncyCastleProvider.PROVIDER_NAME);
+        PSSParameterSpec pssParameterSpec = new PSSParameterSpec(MGF1ParameterSpec.SHA256.getDigestAlgorithm(),
+                "MGF1", MGF1ParameterSpec.SHA256, SIGNATURE_SALT_LENGTH, 1);
+        signature.setParameter(pssParameterSpec);
+        signature.initSign(privateKey);
+        signature.update(data);
+        return signature.sign();
+    }
+
+    /**
+     * 验签
+     *
+     * @param publicKey 公钥
+     * @param data      数据
+     * @param sign      签名值
+     * @return 验签是否成功
+     * @throws NoSuchAlgorithmException           异常
+     * @throws NoSuchProviderException            异常
+     * @throws InvalidAlgorithmParameterException 异常
+     * @throws InvalidKeyException                异常
+     * @throws SignatureException                 异常
+     */
+    public static boolean verify(PublicKey publicKey, byte[] data, byte[] sign) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, SignatureException {
+        Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM, BouncyCastleProvider.PROVIDER_NAME);
+        PSSParameterSpec pssParameterSpec = new PSSParameterSpec(MGF1ParameterSpec.SHA256.getDigestAlgorithm(),
+                "MGF1", MGF1ParameterSpec.SHA256, SIGNATURE_SALT_LENGTH, 1);
+        signature.setParameter(pssParameterSpec);
+        signature.initVerify(publicKey);
+        signature.update(data);
+        return signature.verify(sign);
     }
 
     /**
