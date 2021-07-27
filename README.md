@@ -15,3 +15,5 @@
 - [使用BC从文件解析RSA私钥和公钥](./mdfiles/crypto/BC_RSA_Key.md)
 - [使用BC进行RSA加密与解密](./mdfiles/crypto/BC_RSA_Cipher.md)
 - [使用BC进行RSA签名与验签](./mdfiles/crypto/BC_RSA_Signature.md)
+
+[3. 消息摘要算法Java实现](./mdfiles/crypto/Dgst.md)
