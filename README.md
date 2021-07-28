@@ -17,3 +17,6 @@
 - [使用BC进行RSA签名与验签](./mdfiles/crypto/BC_RSA_Signature.md)
 
 [3. 消息摘要算法Java实现](./mdfiles/crypto/Dgst.md)
+
+[4. 消息认证码算法Java实现](./mdfiles/crypto/Mac.md)
+
