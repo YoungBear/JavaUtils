@@ -2,6 +2,7 @@ package com.ysx.utils.crypto.mac;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
+import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -59,5 +60,20 @@ public class MacUtils {
         Mac instance = Mac.getInstance(algorithmName, BouncyCastleProvider.PROVIDER_NAME);
         instance.init(sk);
         return instance.doFinal(data);
+    }
+
+    /**
+     * 生成密钥
+     *
+     * @param algorithmName 算法名
+     * @return 密钥字节数组
+     * @throws NoSuchAlgorithmException 异常
+     * @throws NoSuchProviderException  异常
+     */
+    public static byte[] generateKey(String algorithmName)
+            throws NoSuchAlgorithmException, NoSuchProviderException {
+        KeyGenerator kg = KeyGenerator.getInstance(algorithmName, BouncyCastleProvider.PROVIDER_NAME);
+        SecretKey sk = kg.generateKey();
+        return sk.getEncoded();
     }
 }

@@ -64,4 +64,10 @@ public class MacUtilsTest {
         secureRandom.nextBytes(key);
         System.out.println(Hex.toHexString(key));
     }
+
+    @Test
+    public void generateKeyTest() throws NoSuchAlgorithmException, NoSuchProviderException {
+        String algorithmName = "HmacSHA256";
+        System.out.println(Hex.toHexString(MacUtils.generateKey(algorithmName)));
+    }
 }
