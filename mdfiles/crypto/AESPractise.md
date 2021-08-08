@@ -1,15 +1,20 @@
-package com.ysx.utils.crypto.aes;
+# AES 加解密实践
 
-import org.bouncycastle.util.encoders.Hex;
+[项目地址](https://github.com/YoungBear/JavaUtils)
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.security.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+AES 实践：
 
+- 封装异常抛出统一异常
+
+- 密文格式一般为：加密算法id+密钥id+iv值+密文数据
+
+- 每次加密随机生成iv值
+
+- 使用算法 "AES/GCM/NoPadding"
+
+  
+
+```java
 /**
  * @author youngbear
  * @email youngbear@aliyun.com
@@ -168,3 +173,5 @@ public class AESPractise {
         this.currentSecretKeyId = currentSecretKeyId;
     }
 }
+```
+
