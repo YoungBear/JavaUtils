@@ -21,14 +21,13 @@ import java.security.spec.AlgorithmParameterSpec;
  * 实践中，可以封装加解密方法，封装异常抛出统一异常
  * 密文格式一般为：加密算法id+密钥id+iv值+密文数据
  * 结合密钥管理系统，缓存，实现加解密
- * 本实例使用 AES/GCM/NoPadding 为例
+ * 本示例使用 AES/GCM/NoPadding
  */
 public class AESUtils {
 
     /**
      * AES 加密算法
-     * AES/GCM/NoPadding"
-     * 加密后的密文数据，长度是密钥长度的正数倍
+     * AES/GCM/NoPadding
      */
     private static final String CIPHER_ALGORITHM = "AES/GCM/NoPadding";
 
