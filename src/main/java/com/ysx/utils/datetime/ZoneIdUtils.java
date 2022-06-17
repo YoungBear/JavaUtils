@@ -16,6 +16,7 @@ import java.util.Set;
 public class ZoneIdUtils {
     public static void main(String[] args) {
         Set<String> zoneIds = ZoneId.getAvailableZoneIds();
+        System.out.println(zoneIds.size());
         zoneIds.stream().sorted().forEach( zoneIdString -> {
             ZoneId zoneId = ZoneId.of(zoneIdString);
             ZoneOffset zoneOffset = ZonedDateTime.now(zoneId).getOffset();
