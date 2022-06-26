@@ -238,20 +238,22 @@ public class ZonedDateTimeUtilsTest {
 
 ## 3. 常见时区
 
+详细夏令时规定可参考：http://www.timeofdate.com/
 
 
-| 时区ID字符串        | 偏移值 | 是否有夏令时 | 描述   |
-| ------------------- | ------ | ------------ | ------ |
-| Asia/Shanghai       | +08:00 | 否           | 东八区 |
-| Europe/London       | +01:00 | 是 Z         |        |
-| Europe/Paris        | +01:00 | 是 +02:00    |        |
-| Europe/Berlin       | +01:00 | 是 +02:00    |        |
-| Europe/Moscow       | +03:00 | 否           |        |
-| Asia/Seoul          | +09:00 | 否           |        |
-| Asia/Tokyo          | +09:00 | 否           |        |
-| Australia/Sydney    | +10:00 | 是  +11:00   |        |
-| America/Los_Angeles | -08:00 | 是 -07:00    |        |
-| America/New_York    | -05:00 | 是 -04:00    |        |
+
+| 时区ID字符串        | 标准偏移值standardOffset | 是否有夏令时 | 使用夏令时的偏移值offset |
+| ------------------- | ------------------------ | ------------ | ------------------------ |
+| Asia/Shanghai       | +08:00                   | 否           | 无                       |
+| Europe/London       | +01:00                   | 是           | Z（即与UTC时间一致）     |
+| Europe/Paris        | +01:00                   | 是           | +02:00                   |
+| Europe/Berlin       | +01:00                   | 是           | +02:00                   |
+| Europe/Moscow       | +03:00                   | 否           | 无                       |
+| Asia/Seoul          | +09:00                   | 否           | 无                       |
+| Asia/Tokyo          | +09:00                   | 否           | 无                       |
+| Australia/Sydney    | +10:00                   | 是           | +11:00                   |
+| America/Los_Angeles | -08:00                   | 是           | -07:00                   |
+| America/New_York    | -05:00                   | 是           | -04:00                   |
 
 
 
