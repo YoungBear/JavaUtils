@@ -1,8 +1,9 @@
 package com.ysx.utils.datetime;
 
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
+import java.time.zone.ZoneRules;
 import java.util.Set;
 
 /**
@@ -15,12 +16,22 @@ import java.util.Set;
  */
 public class ZoneIdUtils {
     public static void main(String[] args) {
+        Instant instant = Instant.now();
         Set<String> zoneIds = ZoneId.getAvailableZoneIds();
         System.out.println(zoneIds.size());
-        zoneIds.stream().sorted().forEach( zoneIdString -> {
+        zoneIds.stream().sorted().forEach(zoneIdString -> {
             ZoneId zoneId = ZoneId.of(zoneIdString);
-            ZoneOffset zoneOffset = ZonedDateTime.now(zoneId).getOffset();
-            System.out.println(zoneIdString + " " + zoneOffset.toString());
+            ZoneRules rules = zoneId.getRules();
+            // 当前offset
+            ZoneOffset offset = rules.getOffset(instant);
+            // 标准offset
+            ZoneOffset standardOffset = rules.getStandardOffset(instant);
+            // 是否为夏令时
+            boolean daylightSavings = rules.isDaylightSavings(instant);
+
+            System.out.println(zoneIdString + ", offset: "
+                    + offset + ", standardOffset: " + standardOffset
+                    + ", daylightSavings: " + daylightSavings);
         });
     }
 }
