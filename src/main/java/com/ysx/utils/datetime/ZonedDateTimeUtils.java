@@ -98,7 +98,6 @@ public class ZonedDateTimeUtils {
     public static long string2long(String dateString, DateTimeFormatter formatter, ZoneId zoneId) {
         formatter.withZone(zoneId);
         LocalDateTime localDateTime = LocalDateTime.parse(dateString, formatter);
-        ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, zoneId);
-        return Instant.from(zonedDateTime).toEpochMilli();
+        return localDateTime.atZone(zoneId).toInstant().toEpochMilli();
     }
 }

@@ -28,7 +28,7 @@ public class DSTUtilsTest {
     public void instantTest1() {
         // 2022-06-15T22:06:29.483+08:00[Asia/Shanghai] 北半球可能有夏令时
         long timestamp = 1655301989483L;
-        Instant instant = Instant.ofEpochSecond(timestamp);
+        Instant instant = Instant.ofEpochMilli(timestamp);
         // 2022-06-15 伦敦有夏令时
         String zoneIdString1 = "Europe/London";
         Assert.assertTrue(DSTUtils.isDST(zoneIdString1, instant));
@@ -56,7 +56,7 @@ public class DSTUtilsTest {
     public void instantTest2() {
         // 2022-01-15T22:06:29.483+08:00[Asia/Shanghai] 南半球可能有夏令时
         long timestamp = 1642255589483L;
-        Instant instant = Instant.ofEpochSecond(timestamp);
+        Instant instant = Instant.ofEpochMilli(timestamp);
         // 2022-06-15 上海无夏令时
         String zoneIdString5 = "Asia/Shanghai";
         Assert.assertFalse(DSTUtils.isDST(zoneIdString5, instant));
