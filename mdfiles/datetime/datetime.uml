@@ -1,0 +1,103 @@
+@startuml
+interface TemporalAccessor
+interface Temporal
+TemporalAccessor <|-- Temporal
+interface TemporalUnit
+interface ChronoUnit
+TemporalUnit <|-- ChronoUnit
+interface TemporalAdjuster
+
+
+TemporalAccessor : int get(TemporalField field)
+TemporalAccessor : long getLong(TemporalField field)
+TemporalAccessor : boolean isSupported(TemporalField field)
+TemporalAccessor : <R> R query(TemporalQuery<R> query)
+TemporalAccessor : ValueRange range(TemporalField field)
+
+
+Temporal : Temporal with(TemporalAdjuster adjuster)
+Temporal : Temporal with(TemporalField field, long newValue)
+Temporal : Temporal plus(TemporalAmount amount)
+Temporal : Temporal plus(long amountToAdd, TemporalUnit unit)
+Temporal : Temporal minus(TemporalAmount amount)
+Temporal : Temporal minus(long amountToSubtract, TemporalUnit unit)
+Temporal : long until(Temporal endExclusive, TemporalUnit unit)
+
+
+TemporalUnit : Duration getDuration()
+TemporalUnit : boolean isDurationEstimated()
+TemporalUnit : boolean isDateBased()
+TemporalUnit : boolean isTimeBased()
+TemporalUnit : boolean isSupportedBy(Temporal temporal)
+TemporalUnit : <R extends Temporal> R addTo(R temporal, long amount)
+TemporalUnit : long between(Temporal temporal1Inclusive, Temporal temporal2Exclusive)
+
+enum ChronoUnit {
++ NANOS
++ MICROS
++ MILLIS
++ SECONDS
++ MINUTES
++ HOURS
++ HALF_DAYS
++ DAYS
++ WEEKS
++ MONTHS
++ YEARS
++ DECADES
++ CENTURIES
++ MILLENNIA
++ ERAS
++ FOREVER
+
+- name
+- duration
+
+}
+
+interface TemporalAdjuster {
++ Temporal adjustInto(Temporal temporal)
+}
+
+interface TemporalField {
++ String getDisplayName(Locale locale)
++ TemporalUnit getBaseUnit()
++ TemporalUnit getRangeUnit()
++ ValueRange range()
++ boolean isDateBased();
++ boolean isTimeBased()
++ boolean isSupportedBy(TemporalAccessor temporal)
++ ValueRange rangeRefinedBy(TemporalAccessor temporal)
++ long getFrom(TemporalAccessor temporal)
++ <R extends Temporal> R adjustInto(R temporal, long newValue)
++ TemporalAccessor resolve()
+
+}
+
+interface TemporalAmount {
++ long get(TemporalUnit unit)
++ List<TemporalUnit> getUnits()
++ Temporal addTo(Temporal temporal)
++ Temporal subtractFrom(Temporal temporal)
+}
+
+Temporal <|-- LocalDateTime
+TemporalAdjuster <|-- LocalDateTime
+ChronoLocalDateTime <|-- LocalDateTime
+Serializable <|-- LocalDateTime
+
+class LocalDateTime {
++ {static} now()
++ {static} of()
++ {static} ofInstant(Instant instant, ZoneId zone)
++ {static} ofEpochSecond()
++ {static} from(TemporalAccessor temporal)
++ {static} parse(CharSequence text)
++ {static} with(LocalDate newDate, LocalTime newTime)
+
+
+
+
+}
+
+@enduml
