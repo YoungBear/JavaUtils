@@ -32,7 +32,7 @@
         System.out.println("nowZonedDateTime: " + nowZonedDateTime
                 + ", epochMilli: " + nowZonedDateTime.toInstant().toEpochMilli());
 
-        // 获取1年后的时间戳（常用语设置有效期）
+        // 获取1年后的时间戳（常用于设置有效期）
         ZonedDateTime nowZonedDateTimePlus1Year = nowZonedDateTime.plus(1, ChronoUnit.YEARS);
         System.out.println("nowZonedDateTimePlus1Year: " + nowZonedDateTimePlus1Year
                 + ", epochMilli: " + nowZonedDateTimePlus1Year.toInstant().toEpochMilli());
