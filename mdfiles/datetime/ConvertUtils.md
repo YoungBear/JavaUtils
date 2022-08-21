@@ -193,6 +193,8 @@ public class ConvertUtilsTest {
 
 ## [5. SimpleDateFormat 多线程存在的问题及解决方案](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/SimpleDateFormat.md)
 
+## [6. 常用日期时间方法](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/CommonMethod.md)
+
 
 
 # [源代码地址](https://github.com/YoungBear/JavaUtils)
