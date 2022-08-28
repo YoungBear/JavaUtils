@@ -18,10 +18,10 @@
 
         <!-- 第三方软件版本 -->
         <junit.version>4.13.2</junit.version>
-        <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.11</logback.version>
         <apache.commons.version>1.21</apache.commons.version>
         <commons-io.version>2.11.0</commons-io.version>
-        <bouncycastle.version>1.69</bouncycastle.version>
+        <bouncycastle.version>1.70</bouncycastle.version>
     </properties>
 
     <dependencies>
