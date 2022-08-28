@@ -18,6 +18,7 @@
 
         <!-- 第三方软件版本 -->
         <junit.version>4.13.2</junit.version>
+        <junit5.version>5.9.0</junit5.version>
         <logback.version>1.2.11</logback.version>
         <apache.commons.version>1.21</apache.commons.version>
         <commons-io.version>2.11.0</commons-io.version>
@@ -29,6 +30,13 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit5.version}</version>
             <scope>test</scope>
         </dependency>
 
