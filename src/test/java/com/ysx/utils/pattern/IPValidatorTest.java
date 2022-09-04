@@ -30,7 +30,7 @@ public class IPValidatorTest {
         assertFalse(IPValidator.isValidIpv4(ipv4));
     }
 
-    static Stream<String> validIPv4Provider() {
+    private static Stream<String> validIPv4Provider() {
         return Stream.of(
                 "0.0.0.0",
                 "0.0.0.1",
@@ -45,7 +45,7 @@ public class IPValidatorTest {
                 "100.100.100.100");
     }
 
-    static Stream<String> invalidIPv4Provider() {
+    private static Stream<String> invalidIPv4Provider() {
         return Stream.of(
                 "000.000.000.000",          // leading 0
                 "00.00.00.00",              // leading 0

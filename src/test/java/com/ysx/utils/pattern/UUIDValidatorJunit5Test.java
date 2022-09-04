@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
  * @github <a href="https://github.com/YoungBear">...</a>
  * @description UUIDPattern 单元测试
  */
-public class UUIDPatternJunit5Test {
+public class UUIDValidatorJunit5Test {
 
     @DisplayName("DisplayName isValidUUIDTest")
     @Test
@@ -23,11 +23,11 @@ public class UUIDPatternJunit5Test {
         String validUuidUpperStr = "12467b39-De66-48f2-b4c3-5885d4dde759";
         String inValidUuidStr = "g2467b39-de66-48f2-b4c3-5885d4dde759";
 
-        Assertions.assertFalse(UUIDPattern.isValidUUID(nullStr));
-        Assertions.assertFalse(UUIDPattern.isValidUUID(emptyStr));
-        Assertions.assertTrue(UUIDPattern.isValidUUID(validUuidStr));
-        Assertions.assertTrue(UUIDPattern.isValidUUID(validUuidUpperStr));
-        Assertions.assertFalse(UUIDPattern.isValidUUID(inValidUuidStr));
+        Assertions.assertFalse(UUIDValidator.isValidUUID(nullStr));
+        Assertions.assertFalse(UUIDValidator.isValidUUID(emptyStr));
+        Assertions.assertTrue(UUIDValidator.isValidUUID(validUuidStr));
+        Assertions.assertTrue(UUIDValidator.isValidUUID(validUuidUpperStr));
+        Assertions.assertFalse(UUIDValidator.isValidUUID(inValidUuidStr));
     }
 
     @DisplayName("DisplayName isValidUUID32Test")
@@ -40,26 +40,26 @@ public class UUIDPatternJunit5Test {
         String inValidUuidStr = "g2467b39de6648f2b4c35885d4dde759";
         String inValidUuid32Str = "12467b39-de66-48f2-b4c3-5885d4dde759";
 
-        Assertions.assertFalse(UUIDPattern.isValidUUID32(nullStr));
-        Assertions.assertFalse(UUIDPattern.isValidUUID32(emptyStr));
-        Assertions.assertTrue(UUIDPattern.isValidUUID32(validUuidStr));
-        Assertions.assertTrue(UUIDPattern.isValidUUID32(validUuidUpperStr));
-        Assertions.assertFalse(UUIDPattern.isValidUUID32(inValidUuidStr));
-        Assertions.assertFalse(UUIDPattern.isValidUUID32(inValidUuid32Str));
+        Assertions.assertFalse(UUIDValidator.isValidUUID32(nullStr));
+        Assertions.assertFalse(UUIDValidator.isValidUUID32(emptyStr));
+        Assertions.assertTrue(UUIDValidator.isValidUUID32(validUuidStr));
+        Assertions.assertTrue(UUIDValidator.isValidUUID32(validUuidUpperStr));
+        Assertions.assertFalse(UUIDValidator.isValidUUID32(inValidUuidStr));
+        Assertions.assertFalse(UUIDValidator.isValidUUID32(inValidUuid32Str));
     }
 
     @DisplayName("DisplayName uuidTest")
     @Test
     public void uuidTest() {
-        String uuid = UUIDPattern.uuid();
-        Assertions.assertTrue(UUIDPattern.isValidUUID(uuid));
+        String uuid = UUIDValidator.uuid();
+        Assertions.assertTrue(UUIDValidator.isValidUUID(uuid));
     }
 
     @DisplayName("DisplayName uuid32Test")
     @Test
     public void uuid32Test() {
-        String uuid32 = UUIDPattern.uuid32();
-        Assertions.assertTrue(UUIDPattern.isValidUUID32(uuid32));
+        String uuid32 = UUIDValidator.uuid32();
+        Assertions.assertTrue(UUIDValidator.isValidUUID32(uuid32));
     }
 
 }

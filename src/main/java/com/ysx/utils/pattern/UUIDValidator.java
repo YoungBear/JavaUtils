@@ -12,11 +12,11 @@ import java.util.regex.Pattern;
  * @github <a href="https://github.com/YoungBear">...</a>
  * @description
  */
-public class UUIDPattern {
+public class UUIDValidator {
 
-    private static final Pattern UUID_PATTERN = Pattern.compile(PatternConstant.UUID);
+    private static final Pattern UUID_PATTERN = Pattern.compile("[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}");
 
-    private static final Pattern UUID_WITH_NO_HYPHEN_PATTERN = Pattern.compile(PatternConstant.UUID_WITH_NO_HYPHEN);
+    private static final Pattern UUID_WITH_NO_HYPHEN_PATTERN = Pattern.compile("[0-9a-f]{32}");
 
 
     /**
