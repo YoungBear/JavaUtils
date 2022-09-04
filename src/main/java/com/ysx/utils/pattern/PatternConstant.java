@@ -16,8 +16,13 @@ public interface PatternConstant {
     String UUID = "[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}";
 
     /**
-     * 不带中划线的UUDI共32位
+     * 不带中划线的UUID共32位
      */
     String UUID_WITH_NO_HYPHEN = "[0-9a-f]{32}";
+
+    /**
+     * ipv4地址
+     */
+    String IP_V4 = "^(((\\d)|([1-9]\\d)|(1\\d{2})|(2[0-4]\\d)|(25[0-5]))\\.){3}((\\d)|([1-9]\\d)|(1\\d{2})|(2[0-4]\\d)|(25[0-5]))$";
 
 }
