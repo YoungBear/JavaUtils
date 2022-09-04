@@ -49,6 +49,8 @@
 
 [1. UUID](./mdfiles/pattern/UUID.md)
 
+[2. IP地址](./mdfiles/pattern/IP.md)
+
 
 
 ## 5. 日志
