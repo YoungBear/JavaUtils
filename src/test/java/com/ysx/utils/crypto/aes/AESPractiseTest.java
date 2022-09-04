@@ -1,7 +1,7 @@
 package com.ysx.utils.crypto.aes;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
 
@@ -25,8 +25,8 @@ public class AESPractiseTest {
 
         String cipherString = "1#001#7505ff2cf7de25d90c157624f569e9ad#c58cd00ac8061ff1e49c7d7da5fd810cdd3e07725610e82356ea91b3";
         byte[] decryptedData = practise.decrypt(cipherString);
-        Assert.assertArrayEquals(data, decryptedData);
-        Assert.assertEquals(dataString, new String(decryptedData));
+        Assertions.assertArrayEquals(data, decryptedData);
+        Assertions.assertEquals(dataString, new String(decryptedData));
 
     }
 
@@ -42,7 +42,7 @@ public class AESPractiseTest {
 
         String cipherString = "1#002#c5dcfd831d2273efdf3d5f029b921022#464c587fef2ab29375db3668f23d788c9f5bf750777f5ab7b62a0c37";
         byte[] decryptedData = practise.decrypt(cipherString);
-        Assert.assertArrayEquals(data, decryptedData);
-        Assert.assertEquals(dataString, new String(decryptedData));
+        Assertions.assertArrayEquals(data, decryptedData);
+        Assertions.assertEquals(dataString, new String(decryptedData));
     }
 }

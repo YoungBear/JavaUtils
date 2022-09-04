@@ -3,8 +3,8 @@ package com.ysx.utils.crypto.rsa;
 import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.pkcs.PKCSException;
 import org.bouncycastle.util.encoders.Hex;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +51,7 @@ public class RSAUtilsBCTest {
         byte[] cipherData = Hex.decode(cipherDataHexString);
         byte[] plainData = RSAUtilsBC.decrypt(privateKey, cipherData);
         String plainText = new String(plainData, StandardCharsets.UTF_8);
-        Assert.assertEquals("London2012", plainText);
+        Assertions.assertEquals("London2012", plainText);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class RSAUtilsBCTest {
         byte[] cipherData = Hex.decode(cipherDataHexString);
         byte[] plainData = RSAUtilsBC.decrypt(privateKey, cipherData);
         String plainText = new String(plainData, StandardCharsets.UTF_8);
-        Assert.assertNotEquals("London2013", plainText);
+        Assertions.assertNotEquals("London2013", plainText);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class RSAUtilsBCTest {
         String publicKeyFilePath = BASE_PATH + "rsa_pss_public_3072_restricted_password.pem";
         PublicKey publicKey = RSAUtilsBC.decodePublicKey(publicKeyFilePath);
         boolean verify = RSAUtilsBC.verify(publicKey, data, signature);
-        Assert.assertTrue(verify);
+        Assertions.assertTrue(verify);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class RSAUtilsBCTest {
         String publicKeyFilePath = BASE_PATH + "rsa_pss_public_3072_restricted_password.pem";
         PublicKey publicKey = RSAUtilsBC.decodePublicKey(publicKeyFilePath);
         boolean verify = RSAUtilsBC.verify(publicKey, data, signature);
-        Assert.assertFalse(verify);
+        Assertions.assertFalse(verify);
     }
 
     @Test
@@ -105,8 +105,8 @@ public class RSAUtilsBCTest {
         String algorithm = privateKey.getAlgorithm();
         int length = ((RSAPrivateKey) privateKey).getModulus().bitLength();
         LOGGER.info("algorithm: {}, length: {}", algorithm, length);
-        Assert.assertEquals("RSASSA-PSS", algorithm);
-        Assert.assertEquals(3072, length);
+        Assertions.assertEquals("RSASSA-PSS", algorithm);
+        Assertions.assertEquals(3072, length);
     }
 
     @Test
@@ -116,8 +116,8 @@ public class RSAUtilsBCTest {
         String algorithm = privateKey.getAlgorithm();
         int length = ((RSAPrivateKey) privateKey).getModulus().bitLength();
         LOGGER.info("algorithm: {}, length: {}", algorithm, length);
-        Assert.assertEquals("RSASSA-PSS", algorithm);
-        Assert.assertEquals(3072, length);
+        Assertions.assertEquals("RSASSA-PSS", algorithm);
+        Assertions.assertEquals(3072, length);
     }
 
     @Test
@@ -127,8 +127,8 @@ public class RSAUtilsBCTest {
         String algorithm = publicKey.getAlgorithm();
         int length = ((RSAPublicKey) publicKey).getModulus().bitLength();
         LOGGER.info("algorithm: {}, length: {}", algorithm, length);
-        Assert.assertEquals("RSASSA-PSS", algorithm);
-        Assert.assertEquals(3072, length);
+        Assertions.assertEquals("RSASSA-PSS", algorithm);
+        Assertions.assertEquals(3072, length);
     }
 
     @Test
@@ -138,8 +138,8 @@ public class RSAUtilsBCTest {
         String algorithm = publicKey.getAlgorithm();
         int length = ((RSAPublicKey) publicKey).getModulus().bitLength();
         LOGGER.info("algorithm: {}, length: {}", algorithm, length);
-        Assert.assertEquals("RSASSA-PSS", algorithm);
-        Assert.assertEquals(3072, length);
+        Assertions.assertEquals("RSASSA-PSS", algorithm);
+        Assertions.assertEquals(3072, length);
     }
 
     @Test
@@ -149,8 +149,8 @@ public class RSAUtilsBCTest {
         String algorithm = publicKey.getAlgorithm();
         int length = ((RSAPublicKey) publicKey).getModulus().bitLength();
         LOGGER.info("algorithm: {}, length: {}", algorithm, length);
-        Assert.assertEquals("RSASSA-PSS", algorithm);
-        Assert.assertEquals(3072, length);
+        Assertions.assertEquals("RSASSA-PSS", algorithm);
+        Assertions.assertEquals(3072, length);
     }
 
     @Test
@@ -160,7 +160,7 @@ public class RSAUtilsBCTest {
         String algorithm = publicKey.getAlgorithm();
         int length = ((RSAPublicKey) publicKey).getModulus().bitLength();
         LOGGER.info("algorithm: {}, length: {}", algorithm, length);
-        Assert.assertEquals("RSASSA-PSS", algorithm);
-        Assert.assertEquals(3072, length);
+        Assertions.assertEquals("RSASSA-PSS", algorithm);
+        Assertions.assertEquals(3072, length);
     }
 }

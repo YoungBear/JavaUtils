@@ -1,7 +1,7 @@
 package com.ysx.utils.datetime;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
@@ -31,25 +31,25 @@ public class DSTUtilsTest {
         Instant instant = Instant.ofEpochMilli(timestamp);
         // 2022-06-15 伦敦有夏令时
         String zoneIdString1 = "Europe/London";
-        Assert.assertTrue(DSTUtils.isDST(zoneIdString1, instant));
+        Assertions.assertTrue(DSTUtils.isDST(zoneIdString1, instant));
         // 2022-06-15 巴黎有夏令时
         String zoneIdString2 = "Europe/Paris";
-        Assert.assertTrue(DSTUtils.isDST(zoneIdString2, instant));
+        Assertions.assertTrue(DSTUtils.isDST(zoneIdString2, instant));
         // 2022-06-15 柏林有夏令时
         String zoneIdString3 = "Europe/Berlin";
-        Assert.assertTrue(DSTUtils.isDST(zoneIdString3, instant));
+        Assertions.assertTrue(DSTUtils.isDST(zoneIdString3, instant));
         // 2022-06-15 莫斯科无夏令时
         String zoneIdString4 = "Europe/Moscow";
-        Assert.assertFalse(DSTUtils.isDST(zoneIdString4, instant));
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString4, instant));
         // 2022-06-15 上海无夏令时
         String zoneIdString5 = "Asia/Shanghai";
-        Assert.assertFalse(DSTUtils.isDST(zoneIdString5, instant));
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString5, instant));
         // 2022-06-15 悉尼无夏令时
         String zoneIdString6 = "Australia/Sydney";
-        Assert.assertFalse(DSTUtils.isDST(zoneIdString6, instant));
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString6, instant));
         // 2022-06-15 纽约有夏令时
         String zoneIdString7 = "America/New_York";
-        Assert.assertTrue(DSTUtils.isDST(zoneIdString7, instant));
+        Assertions.assertTrue(DSTUtils.isDST(zoneIdString7, instant));
     }
 
     @Test
@@ -59,13 +59,13 @@ public class DSTUtilsTest {
         Instant instant = Instant.ofEpochMilli(timestamp);
         // 2022-06-15 上海无夏令时
         String zoneIdString5 = "Asia/Shanghai";
-        Assert.assertFalse(DSTUtils.isDST(zoneIdString5, instant));
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString5, instant));
         // 2022-01-15 悉尼有夏令时
         String zoneIdString6 = "Australia/Sydney";
-        Assert.assertTrue(DSTUtils.isDST(zoneIdString6, instant));
+        Assertions.assertTrue(DSTUtils.isDST(zoneIdString6, instant));
         // 2022-01-15 纽约无夏令时
         String zoneIdString7 = "America/New_York";
-        Assert.assertFalse(DSTUtils.isDST(zoneIdString7, instant));
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString7, instant));
     }
 
     @Test
@@ -73,13 +73,13 @@ public class DSTUtilsTest {
         String str = "2022-06-15T22:06:29.483";
         // 2022-06-15 上海无夏令时
         String zoneIdString5 = "Asia/Shanghai";
-        Assert.assertFalse(DSTUtils.isDST(zoneIdString5, str));
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString5, str));
         // 2022-06-15 悉尼有夏令时
         String zoneIdString6 = "Australia/Sydney";
-        Assert.assertFalse(DSTUtils.isDST(zoneIdString6, str));
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString6, str));
         // 2022-06-15 纽约无夏令时
         String zoneIdString7 = "America/New_York";
-        Assert.assertTrue(DSTUtils.isDST(zoneIdString7, str));
+        Assertions.assertTrue(DSTUtils.isDST(zoneIdString7, str));
 
     }
 
@@ -88,13 +88,13 @@ public class DSTUtilsTest {
         String str = "2022-01-15T22:06:29.483";
         // 2022-01-15 上海无夏令时
         String zoneIdString5 = "Asia/Shanghai";
-        Assert.assertFalse(DSTUtils.isDST(zoneIdString5, str));
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString5, str));
         // 2022-01-15 悉尼有夏令时
         String zoneIdString6 = "Australia/Sydney";
-        Assert.assertTrue(DSTUtils.isDST(zoneIdString6, str));
+        Assertions.assertTrue(DSTUtils.isDST(zoneIdString6, str));
         // 2022-01-15 纽约无夏令时
         String zoneIdString7 = "America/New_York";
-        Assert.assertFalse(DSTUtils.isDST(zoneIdString7, str));
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString7, str));
 
     }
 }

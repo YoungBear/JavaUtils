@@ -1,7 +1,8 @@
 package com.ysx.utils;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author youngbear
@@ -13,10 +14,11 @@ import org.junit.Test;
  */
 public class HelloJavaUtilsTest {
 
-    private HelloJavaUtils helloJavaUtils = new HelloJavaUtils();
+    private final HelloJavaUtils helloJavaUtils = new HelloJavaUtils();
 
     @Test
+    @DisplayName("hello test")
     public void helloTest() {
-        Assert.assertEquals("hello", helloJavaUtils.hello());
+        Assertions.assertEquals("hello", helloJavaUtils.hello());
     }
 }

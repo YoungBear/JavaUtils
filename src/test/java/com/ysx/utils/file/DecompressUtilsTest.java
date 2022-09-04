@@ -1,14 +1,15 @@
 package com.ysx.utils.file;
 
-import org.junit.Assert;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -25,20 +26,21 @@ public class DecompressUtilsTest {
 
     private static final String PATH = DecompressUtilsTest.class.getResource("/file/").getPath();
 
-    @Rule
-    public TemporaryFolder temporaryFolder = new TemporaryFolder();
+    @TempDir
+    private Path tempDir;
 
     @Test
-    public void decompressTarGzSuccessTest() throws IOException {
+    @DisplayName("decompress .tar.gz successfully test")
+    public void decompressTarGzSuccessTest() {
         String srcFile = PATH + "pom.tar.gz";
-        String destDir = temporaryFolder.newFolder().getAbsolutePath();
+        String destDir = tempDir.toString();
         LOGGER.info("srcFile: {}, destDir: {}", srcFile, destDir);
         try {
             DecompressUtils.decompressTarGz(srcFile, destDir);
-            Assert.assertTrue(Files.exists(Paths.get(destDir + "/pom.xml")));
+            Assertions.assertTrue(Files.exists(Paths.get(destDir + "/pom.xml")));
         } catch (FileException e) {
             LOGGER.error("decompressTarGzSuccessTest exception", e);
-            Assert.fail();
+            Assertions.fail();
         }
     }
 }

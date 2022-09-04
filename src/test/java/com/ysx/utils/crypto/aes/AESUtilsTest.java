@@ -1,8 +1,8 @@
 package com.ysx.utils.crypto.aes;
 
 import org.bouncycastle.util.encoders.Hex;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -53,8 +53,8 @@ public class AESUtilsTest {
         byte[] iv = Hex.decode(IV_HEX_STRING);
         byte[] plainData = Hex.decode(PLAIN_DATA_HEX_STRING);
         byte[] cipherData = AESUtils.encrypt(secretKey, iv, plainData);
-        Assert.assertArrayEquals(Hex.decode(CIPHER_DATA_HEX_STRING), cipherData);
-        Assert.assertEquals(CIPHER_DATA_HEX_STRING, Hex.toHexString(cipherData));
+        Assertions.assertArrayEquals(Hex.decode(CIPHER_DATA_HEX_STRING), cipherData);
+        Assertions.assertEquals(CIPHER_DATA_HEX_STRING, Hex.toHexString(cipherData));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class AESUtilsTest {
         // 不同的明文，密文不同
         byte[] plainData = Hex.decode(PLAIN_DATA_HEX_STRING + "fa");
         byte[] cipherData = AESUtils.encrypt(secretKey, iv, plainData);
-        Assert.assertNotEquals(CIPHER_DATA_HEX_STRING, Hex.toHexString(cipherData));
+        Assertions.assertNotEquals(CIPHER_DATA_HEX_STRING, Hex.toHexString(cipherData));
     }
 
     @Test
@@ -77,8 +77,8 @@ public class AESUtilsTest {
         byte[] iv = Hex.decode(IV_HEX_STRING);
         byte[] cipherData = Hex.decode(CIPHER_DATA_HEX_STRING);
         byte[] plainData = AESUtils.decrypt(secretKey, iv, cipherData);
-        Assert.assertArrayEquals(Hex.decode(PLAIN_DATA_HEX_STRING), plainData);
-        Assert.assertEquals(PLAIN_DATA_HEX_STRING, Hex.toHexString(plainData));
+        Assertions.assertArrayEquals(Hex.decode(PLAIN_DATA_HEX_STRING), plainData);
+        Assertions.assertEquals(PLAIN_DATA_HEX_STRING, Hex.toHexString(plainData));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class AESUtilsTest {
         byte[] cipherData = Hex.decode(CIPHER_DATA_HEX_STRING);
         byte[] plainData = AESUtils.decrypt(secretKey, iv, cipherData);
         // excepted 为错误的明文
-        Assert.assertNotEquals(PLAIN_DATA_HEX_STRING + "fa", Hex.toHexString(plainData));
+        Assertions.assertNotEquals(PLAIN_DATA_HEX_STRING + "fa", Hex.toHexString(plainData));
     }
 
 
