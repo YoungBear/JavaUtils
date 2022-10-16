@@ -7,6 +7,8 @@ import java.time.zone.ZoneRules;
 import java.util.Set;
 
 /**
+ * 获取当前系统的时区列表
+ *
  * @author youngbear
  * @email youngbear@aliyun.com
  * @date 2022/6/15 23:18
@@ -14,7 +16,7 @@ import java.util.Set;
  * @github https://github.com/YoungBear
  * @description 获取全球时区信息
  */
-public class ZoneIdUtils {
+public class ZoneIdListTest {
     public static void main(String[] args) {
         Instant instant = Instant.now();
         Set<String> zoneIds = ZoneId.getAvailableZoneIds();

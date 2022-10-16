@@ -35,6 +35,7 @@ public class IPValidatorTest {
 
     private static Stream<String> invalidIPv4Provider() {
         return Stream.of(
+                null,
                 "000.000.000.000",          // leading 0
                 "00.00.00.00",              // leading 0
                 "1.2.3.04",                 // leading 0

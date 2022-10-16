@@ -59,12 +59,15 @@ public class DSTUtilsTest {
         Instant instant = Instant.ofEpochMilli(timestamp);
         // 2022-06-15 上海无夏令时
         String zoneIdString5 = "Asia/Shanghai";
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString5, timestamp));
         Assertions.assertFalse(DSTUtils.isDST(zoneIdString5, instant));
         // 2022-01-15 悉尼有夏令时
         String zoneIdString6 = "Australia/Sydney";
+        Assertions.assertTrue(DSTUtils.isDST(zoneIdString6, timestamp));
         Assertions.assertTrue(DSTUtils.isDST(zoneIdString6, instant));
         // 2022-01-15 纽约无夏令时
         String zoneIdString7 = "America/New_York";
+        Assertions.assertFalse(DSTUtils.isDST(zoneIdString7, timestamp));
         Assertions.assertFalse(DSTUtils.isDST(zoneIdString7, instant));
     }
 
