@@ -177,6 +177,10 @@ public class IPValidatorTest {
 
 ## 其他的ipv4地址的正则及问题
 
+
+
+### 有问题的
+
 ```java
 // https://juejin.cn/post/6844903768232820749
 // 有问题 00.00.00.00 认为是有效的
@@ -191,7 +195,7 @@ String IPV4_PATTERN ="^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?
 
 
 
-正确的：
+### 正确的：
 
 ```java
 // https://mkyong.com/regular-expressions/how-to-validate-ip-address-with-regular-expression/  
