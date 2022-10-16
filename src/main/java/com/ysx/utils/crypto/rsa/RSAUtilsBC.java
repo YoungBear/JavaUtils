@@ -18,7 +18,16 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.security.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Security;
+import java.security.Signature;
+import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.MGF1ParameterSpec;
 import java.security.spec.PSSParameterSpec;
@@ -59,7 +68,7 @@ public class RSAUtilsBC {
      * 使用公钥加密
      *
      * @param publicKey 公钥
-     * @param data      待加密数据明文
+     * @param data 待加密数据明文
      * @return 密文
      * @throws NoSuchPaddingException    异常
      * @throws NoSuchAlgorithmException  异常
@@ -99,7 +108,7 @@ public class RSAUtilsBC {
      * 签名
      *
      * @param privateKey 私钥
-     * @param data       数据
+     * @param data 数据
      * @return 数据的签名值
      * @throws NoSuchAlgorithmException           异常
      * @throws NoSuchProviderException            异常
@@ -121,8 +130,8 @@ public class RSAUtilsBC {
      * 验签
      *
      * @param publicKey 公钥
-     * @param data      数据
-     * @param sign      签名值
+     * @param data 数据
+     * @param sign 签名值
      * @return 验签是否成功
      * @throws NoSuchAlgorithmException           异常
      * @throws NoSuchProviderException            异常

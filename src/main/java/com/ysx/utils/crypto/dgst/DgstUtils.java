@@ -44,7 +44,7 @@ public class DgstUtils {
     /**
      * 计算数据的消息摘要
      *
-     * @param data          数据
+     * @param data 数据
      * @param algorithmName 算法名称
      * @return 消息摘要值
      * @throws NoSuchAlgorithmException 异常
@@ -59,7 +59,7 @@ public class DgstUtils {
     /**
      * 计算文件的摘要值
      *
-     * @param file          文件
+     * @param file 文件
      * @param algorithmName 算法名
      * @return 摘要值
      * @throws IOException              异常

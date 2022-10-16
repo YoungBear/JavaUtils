@@ -30,7 +30,7 @@ public class FormatterUtils {
      * 指定格式格式化本地日期时间
      *
      * @param localDateTime 本地日期时间
-     * @param pattern       格式：如 yyyy-MM-dd'T'HH:mm:ss.SSS
+     * @param pattern 格式：如 yyyy-MM-dd'T'HH:mm:ss.SSS
      * @return 格式化字符串
      */
     public static String local2String(LocalDateTime localDateTime, String pattern) {
@@ -41,7 +41,7 @@ public class FormatterUtils {
     /**
      * 指定 DateTimeFormatter 格式化本地日期时间
      *
-     * @param localDateTime     本地日期时间
+     * @param localDateTime 本地日期时间
      * @param dateTimeFormatter DateTimeFormatter 如 DateTimeFormatter.ISO_LOCAL_DATE_TIME
      * @return 格式化字符串
      */
@@ -64,7 +64,7 @@ public class FormatterUtils {
      * 指定格式解析本地日期时间
      *
      * @param localDateTimeString 格式化字符串 如 2022-06-15T22:06:29.483
-     * @param pattern             格式：如 yyyy-MM-dd'T'HH:mm:ss.SSS
+     * @param pattern 格式：如 yyyy-MM-dd'T'HH:mm:ss.SSS
      * @return 本地日期时间
      */
     public static LocalDateTime string2Local(String localDateTimeString, String pattern) {
@@ -76,7 +76,7 @@ public class FormatterUtils {
      * 指定 DateTimeFormatter 解析本地日期时间
      *
      * @param localDateTimeString 格式化字符串 如 2022-06-15T22:06:29.483
-     * @param dateTimeFormatter   DateTimeFormatter 如 DateTimeFormatter.ISO_LOCAL_DATE_TIME
+     * @param dateTimeFormatter DateTimeFormatter 如 DateTimeFormatter.ISO_LOCAL_DATE_TIME
      * @return 本地日期时间
      */
     public static LocalDateTime string2Local(String localDateTimeString, DateTimeFormatter dateTimeFormatter) {

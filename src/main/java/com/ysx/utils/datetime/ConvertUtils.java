@@ -29,7 +29,7 @@ public class ConvertUtils {
      * 将 LocalDateTime 转换为 ZonedDateTime
      *
      * @param localDateTime 本地日期时间
-     * @param zoneId        时区
+     * @param zoneId 时区
      * @return 带时区的日期时间
      */
     public static ZonedDateTime local2Zoned(LocalDateTime localDateTime, ZoneId zoneId) {
@@ -40,7 +40,7 @@ public class ConvertUtils {
      * 将 Instant 转换为 LocalDateTime
      *
      * @param instant 时间戳
-     * @param zoneId  时区
+     * @param zoneId 时区
      * @return 本地日期时间
      */
     public static LocalDateTime instant2local(Instant instant, ZoneId zoneId) {
@@ -51,7 +51,7 @@ public class ConvertUtils {
      * 将 LocalDateTime 转换为 Instant
      *
      * @param localDateTime 本地日期时间
-     * @param zoneId        时区
+     * @param zoneId 时区
      * @return 时间戳
      */
     public static Instant local2Instant(LocalDateTime localDateTime, ZoneId zoneId) {
@@ -63,7 +63,7 @@ public class ConvertUtils {
      * 将 Instant 转换为 ZonedDateTime
      *
      * @param instant 时间戳
-     * @param zoneId  时区
+     * @param zoneId 时区
      * @return 带时区的日期时间
      */
     public static ZonedDateTime instant2Zoned(Instant instant, ZoneId zoneId) {

@@ -46,8 +46,8 @@ public class PBKDF2Practise {
      * 使用算法 PBKDF2 基于 SHA-256 导出密钥
      * 使用 BouncyCastle 提供的 low-level API
      *
-     * @param password       口令
-     * @param salt           盐值
+     * @param password 口令
+     * @param salt 盐值
      * @param iterationCount 迭代次数
      * @return 导出结果
      */
@@ -61,8 +61,8 @@ public class PBKDF2Practise {
      * 使用算法 PBKDF2 基于 SHA-256 导出密钥
      * 使用 JCE 默认方法，使用默认的 Provider
      *
-     * @param password       口令
-     * @param salt           盐值
+     * @param password 口令
+     * @param salt 盐值
      * @param iterationCount 迭代次数
      * @return 导出结果
      */
@@ -75,8 +75,8 @@ public class PBKDF2Practise {
      * 使用算法 PBKDF2 基于 SHA-256 导出密钥
      * 使用 JCE 默认方法，使用 BouncyCastle 的 Provider
      *
-     * @param password       口令
-     * @param salt           盐值
+     * @param password 口令
+     * @param salt 盐值
      * @param iterationCount 迭代次数
      * @return 导出结果
      */

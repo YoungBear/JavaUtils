@@ -46,8 +46,8 @@ public class MacUtils {
     /**
      * 计算数据的mac值
      *
-     * @param secretKey     密钥
-     * @param data          数据
+     * @param secretKey 密钥
+     * @param data 数据
      * @param algorithmName 算法
      * @return mac值
      * @throws NoSuchAlgorithmException 异常

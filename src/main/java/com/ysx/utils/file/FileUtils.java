@@ -32,7 +32,7 @@ public class FileUtils {
         }
     }
 
-    public static void cleanDirectory(String path) throws FileException{
+    public static void cleanDirectory(String path) throws FileException {
         try {
             org.apache.commons.io.FileUtils.cleanDirectory(new File(path));
         } catch (IOException e) {

@@ -5,7 +5,11 @@ import org.bouncycastle.util.encoders.Hex;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import java.security.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -93,7 +97,8 @@ public class AESPractise {
         try {
             cipherData = AESUtils.encrypt(secretKey, iv, plainData);
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | NoSuchProviderException
-                | InvalidAlgorithmParameterException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+                 | InvalidAlgorithmParameterException | InvalidKeyException | IllegalBlockSizeException |
+                 BadPaddingException e) {
             throw new AESException(e);
         }
         StringBuilder sb = new StringBuilder();
@@ -132,7 +137,8 @@ public class AESPractise {
         try {
             plainData = AESUtils.decrypt(secretKey, iv, cipherData);
         } catch (NoSuchPaddingException | NoSuchAlgorithmException | NoSuchProviderException
-                | InvalidAlgorithmParameterException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+                 | InvalidAlgorithmParameterException | InvalidKeyException | IllegalBlockSizeException |
+                 BadPaddingException e) {
             throw new AESException(e);
         }
         StringBuilder sb = new StringBuilder();

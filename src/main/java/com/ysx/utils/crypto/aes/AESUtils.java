@@ -8,7 +8,12 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.Security;
 import java.security.spec.AlgorithmParameterSpec;
 
 /**
@@ -49,7 +54,7 @@ public class AESUtils {
      * 加密
      *
      * @param secretKey 密钥
-     * @param iv        iv值
+     * @param iv iv值
      * @param plainData 待加密的明文数据
      * @return 密文
      * @throws NoSuchPaddingException             异常
@@ -73,8 +78,8 @@ public class AESUtils {
     /**
      * 解密
      *
-     * @param secretKey  密钥
-     * @param iv         iv值
+     * @param secretKey 密钥
+     * @param iv iv值
      * @param cipherData 待解密的密文数据
      * @return 明文
      * @throws NoSuchPaddingException             异常

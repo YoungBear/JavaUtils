@@ -27,7 +27,7 @@ public class DSTUtils {
      * 是否是夏令时
      *
      * @param zoneIdString 时区id
-     * @param instant      时间信息
+     * @param instant 时间信息
      * @return 是否是夏令时
      */
     public static boolean isDST(String zoneIdString, Instant instant) {
@@ -63,7 +63,7 @@ public class DSTUtils {
     /**
      * 是否是夏令时
      *
-     * @param zoneIdString     时区id，如Asia/Shanghai
+     * @param zoneIdString 时区id，如Asia/Shanghai
      * @param isoLocalDateTime iso日期时间格式，如：2022-06-15T22:06:29.483
      * @return 是否是夏令时
      */

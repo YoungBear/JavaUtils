@@ -18,18 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class IPValidatorTest {
 
-    @ParameterizedTest(name = "#{index} - Run test with IPv4 = {0}")
-    @MethodSource("validIPv4Provider")
-    void test_ipv4_regex_valid(String ipv4) {
-        assertTrue(IPValidator.isValidIpv4(ipv4));
-    }
-
-    @ParameterizedTest(name = "#{index} - Run test with IPv4 = {0}")
-    @MethodSource("invalidIPv4Provider")
-    void test_ipv4_regex_invalid(String ipv4) {
-        assertFalse(IPValidator.isValidIpv4(ipv4));
-    }
-
     private static Stream<String> validIPv4Provider() {
         return Stream.of(
                 "0.0.0.0",
@@ -67,5 +55,17 @@ public class IPValidatorTest {
                 "1..1",                     // empty between .
                 "1.1.1.1.",                 // last .
                 "");                        // empty
+    }
+
+    @ParameterizedTest(name = "#{index} - Run test with IPv4 = {0}")
+    @MethodSource("validIPv4Provider")
+    void test_ipv4_regex_valid(String ipv4) {
+        assertTrue(IPValidator.isValidIpv4(ipv4));
+    }
+
+    @ParameterizedTest(name = "#{index} - Run test with IPv4 = {0}")
+    @MethodSource("invalidIPv4Provider")
+    void test_ipv4_regex_invalid(String ipv4) {
+        assertFalse(IPValidator.isValidIpv4(ipv4));
     }
 }
