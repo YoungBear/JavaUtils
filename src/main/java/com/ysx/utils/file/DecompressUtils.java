@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 /**
@@ -48,7 +48,7 @@ public class DecompressUtils {
      */
     private static void doDecompressTarGz(String srcFilePath, String destDirPath) throws FileException {
         try (TarArchiveInputStream ais = new TarArchiveInputStream(new GzipCompressorInputStream(
-                new BufferedInputStream(new FileInputStream(srcFilePath))))) {
+                new BufferedInputStream(Files.newInputStream(Paths.get(srcFilePath)))))) {
             TarArchiveEntry archiveEntry;
             while (null != (archiveEntry = ais.getNextTarEntry())) {
                 String entryName = archiveEntry.getName();
@@ -58,7 +58,7 @@ public class DecompressUtils {
                     // 如果父目录不存在，则需要创建
                     FileUtils.createDirectories(new File(destDirPath + "/" + entryName).getParent());
                     int count;
-                    try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(destDirPath + "/" + entryName))) {
+                    try (BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(Paths.get(destDirPath + "/" + entryName)))) {
                         byte[] buffer = new byte[DECOMPRESS_BUFFER_SIZE];
                         while (-1 != (count = ais.read(buffer, 0, DECOMPRESS_BUFFER_SIZE))) {
                             bos.write(buffer, 0, count);
@@ -77,7 +77,7 @@ public class DecompressUtils {
      *
      * @param srcFilePath 源文件路径
      * @param destDirPath 解压目标文件路径
-     * @throws FileException
+     * @throws FileException 异常
      */
     private static void checkFile(String srcFilePath, String destDirPath) throws FileException {
         if (null == srcFilePath || srcFilePath.isEmpty() || null == destDirPath || destDirPath.isEmpty()) {
