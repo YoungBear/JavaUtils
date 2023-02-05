@@ -2,7 +2,9 @@ package com.ysx.utils.datetime;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
@@ -23,7 +25,8 @@ public class CommonMethod {
 //        // 最大最小时间
 //        maxUsage();
 
-        localDataWithUsage();
+//        localDataWithUsage();
+        commonTimestamp();
 
     }
 
@@ -162,6 +165,49 @@ public class CommonMethod {
         System.out.println("previousOrSameSunday: " + previousOrSameSunday);
         System.out.println("previousOrSameMonday: " + previousOrSameMonday);
         System.out.println("plus2Days: " + plus2Days);
+    }
+
+    public static void dateAndTimeUsage() {
+        LocalDate nowLocalDate = LocalDate.now();
+        // 2023-02-05
+        System.out.println("nowLocalDate: " + nowLocalDate);
+        LocalDateTime minLocalDateTime = nowLocalDate.atTime(LocalTime.MIN);
+        // 2023-02-05T00:00
+        System.out.println("minLocalDateTime: " + minLocalDateTime);
+        LocalDateTime maxLocalDateTime = nowLocalDate.atTime(LocalTime.MAX);
+        // 2023-02-05T23:59:59.999999999
+        System.out.println("maxLocalDateTime: " + maxLocalDateTime);
+        LocalDateTime noonLocalDateTime = nowLocalDate.atTime(LocalTime.NOON);
+        // 2023-02-05T12:00
+        System.out.println("noonLocalDateTime: " + noonLocalDateTime);
+        // 获取时间戳
+        // 1675526400000
+        long minTimeStamp = minLocalDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        System.out.println(minTimeStamp);
+        // 1675612799999
+        long maxTimeStamp = maxLocalDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        System.out.println(maxTimeStamp);
+        // 1675569600000
+        long noonTimeStamp = noonLocalDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        System.out.println(noonTimeStamp);
+    }
+
+    public static void commonTimestamp() {
+        LocalDate nowLocalDate = LocalDate.now();
+        // 2023-02-05
+        System.out.println("nowLocalDate: " + nowLocalDate);
+        // 1675526400000
+        long minTimeStamp = nowLocalDate.atTime(LocalTime.MIN).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        // 1675612799999
+        long maxTimeStamp = nowLocalDate.atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        // 1675180800000
+        long firstDayOfMonthMinTimeStamp = nowLocalDate.with(TemporalAdjusters.firstDayOfMonth()).atTime(LocalTime.MIN).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        // 1675267199999
+        long firstDayOfMonthMaxTimeStamp = nowLocalDate.with(TemporalAdjusters.firstDayOfMonth()).atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        System.out.println("minTimeStamp: " + minTimeStamp);
+        System.out.println("maxTimeStamp: " + maxTimeStamp);
+        System.out.println("firstDayOfMonthMinTimeStamp: " + firstDayOfMonthMinTimeStamp);
+        System.out.println("firstDayOfMonthMaxTimeStamp: " + firstDayOfMonthMaxTimeStamp);
     }
 
 }

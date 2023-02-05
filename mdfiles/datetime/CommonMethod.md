@@ -72,64 +72,11 @@ LocalDate仅表示日期，所以不支持Hours等操作。同样，LocalTime仅
 
 
 
-## 2. 最大最小时间
+## 2. 常见日期时间计算
 
-使用`java.time.temporal.Temporal#with(java.time.temporal.TemporalAdjuster)` 可以计算最大最小等时间。
+使用`java.time.temporal.Temporal#with(java.time.temporal.TemporalAdjuster)` 可以计算最大最小等日期计算。
 
-```java
-    /**
-     * 当天最小最大时间
-     * 当月/当年第一天最后一天
-     */
-    public static void maxUsage() {
-        // 当前时间
-        ZonedDateTime nowZonedDateTime = ZonedDateTime.now();
-        System.out.println("nowZonedDateTime: " + nowZonedDateTime
-                + ", epochMilli: " + nowZonedDateTime.toInstant().toEpochMilli());
-
-        // 当天最早时间 00:00:00
-        ZonedDateTime nowZonedDateTimeWithMinLocalTime = nowZonedDateTime.with(LocalTime.MIN);
-        System.out.println("nowZonedDateTimeWithMinLocalTime: " + nowZonedDateTimeWithMinLocalTime
-                + ", epochMilli: " + nowZonedDateTimeWithMinLocalTime.toInstant().toEpochMilli());
-
-        // 当天最晚时间 23:59:59
-        ZonedDateTime nowZonedDateTimeWithMaxLocalTime = nowZonedDateTime.with(LocalTime.MAX);
-        System.out.println("nowZonedDateTimeWithMaxLocalTime: " + nowZonedDateTimeWithMaxLocalTime
-                + ", epochMilli: " + nowZonedDateTimeWithMaxLocalTime.toInstant().toEpochMilli());
-
-
-        // 本月或本年的第一天 最后一天
-        LocalDate nowLocalDate = LocalDate.now();
-        LocalDate nowLocalDateWithFirstDayOfMonth = nowLocalDate.with(TemporalAdjusters.firstDayOfMonth());
-        LocalDate nowLocalDateWithFirstDayOfYear = nowLocalDate.with(TemporalAdjusters.firstDayOfYear());
-        LocalDate nowLocalDateWithLastDayOfMonth = nowLocalDate.with(TemporalAdjusters.lastDayOfMonth());
-        LocalDate nowLocalDateWithLastDayOfYear = nowLocalDate.with(TemporalAdjusters.lastDayOfYear());
-
-        System.out.println("nowLocalDate: " + nowLocalDate);
-        System.out.println("nowLocalDateWithFirstDayOfMonth: " + nowLocalDateWithFirstDayOfMonth);
-        System.out.println("nowLocalDateWithFirstDayOfYear: " + nowLocalDateWithFirstDayOfYear);
-        System.out.println("nowLocalDateWithLastDayOfMonth: " + nowLocalDateWithLastDayOfMonth);
-        System.out.println("nowLocalDateWithLastDayOfYear: " + nowLocalDateWithLastDayOfYear);
-
-    }
-```
-
-打印结果为：
-
-```
-nowZonedDateTime: 2022-08-21T22:16:50.012+08:00[Asia/Shanghai], epochMilli: 1661091410012
-nowZonedDateTimeWithMinLocalTime: 2022-08-21T00:00+08:00[Asia/Shanghai], epochMilli: 1661011200000
-nowZonedDateTimeWithMaxLocalTime: 2022-08-21T23:59:59.999999999+08:00[Asia/Shanghai], epochMilli: 1661097599999
-nowLocalDate: 2022-08-21
-nowLocalDateWithFirstDayOfMonth: 2022-08-01
-nowLocalDateWithFirstDayOfYear: 2022-01-01
-nowLocalDateWithLastDayOfMonth: 2022-08-31
-nowLocalDateWithLastDayOfYear: 2022-12-31
-```
-
-
-
-### TemporalAdjusters 常用函数
+#### TemporalAdjusters 常用函数
 
 | 函数名                                                     | 描述                                   |
 | ---------------------------------------------------------- | -------------------------------------- |
@@ -226,6 +173,82 @@ eg.
         System.out.println("plus2Days: " + plus2Days);
     }
 ```
+
+
+
+#### 根据LocalDate获取具体Time或者时间戳
+
+可以通过LocalDate.atTime()获取具体的时间。如
+
+- LocalDate.atTime(LocalTime.MIN) 获取当天最小时间 00:00:00
+- LocalDate.atTime(LocalTime.MAX) 获取当天最大时间 23:59:59
+- LocalDate.atTime(LocalTime.NOON) 获取当天中午时间 12:00
+
+
+
+eg.
+
+```java
+    public static void dateAndTimeUsage() {
+        LocalDate nowLocalDate = LocalDate.now();
+        // 2023-02-05
+        System.out.println("nowLocalDate: " + nowLocalDate);
+        LocalDateTime minLocalDateTime = nowLocalDate.atTime(LocalTime.MIN);
+        // 2023-02-05T00:00
+        System.out.println("minLocalDateTime: " + minLocalDateTime);
+        LocalDateTime maxLocalDateTime = nowLocalDate.atTime(LocalTime.MAX);
+        // 2023-02-05T23:59:59.999999999
+        System.out.println("maxLocalDateTime: " + maxLocalDateTime);
+        LocalDateTime noonLocalDateTime = nowLocalDate.atTime(LocalTime.NOON);
+        // 2023-02-05T12:00
+        System.out.println("noonLocalDateTime: " + noonLocalDateTime);
+        // 获取时间戳
+        // 1675526400000
+        long minTimeStamp = minLocalDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        System.out.println(minTimeStamp);
+        // 1675612799999
+        long maxTimeStamp = maxLocalDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        System.out.println(maxTimeStamp);
+        // 1675569600000
+        long noonTimeStamp = noonLocalDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        System.out.println(noonTimeStamp);
+    }
+```
+
+
+
+结合LocalDate的with常用函数，就可以获取常用时间的时间戳：
+
+eg. 
+
+- 某天的0点的时间戳
+- 某天的23:59:59的时间戳
+- 某周/月/年第一天的0点的时间戳
+- 某周/月/年最后一天23:59:59的时间戳
+
+eg.
+
+```java
+    public static void commonTimestamp() {
+        LocalDate nowLocalDate = LocalDate.now();
+        // 2023-02-05
+        System.out.println("nowLocalDate: " + nowLocalDate);
+        // 1675526400000
+        long minTimeStamp = nowLocalDate.atTime(LocalTime.MIN).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        // 1675612799999
+        long maxTimeStamp = nowLocalDate.atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        // 1675180800000
+        long firstDayOfMonthMinTimeStamp = nowLocalDate.with(TemporalAdjusters.firstDayOfMonth()).atTime(LocalTime.MIN).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        // 1675267199999
+        long firstDayOfMonthMaxTimeStamp = nowLocalDate.with(TemporalAdjusters.firstDayOfMonth()).atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        System.out.println("minTimeStamp: " + minTimeStamp);
+        System.out.println("maxTimeStamp: " + maxTimeStamp);
+        System.out.println("firstDayOfMonthMinTimeStamp: " + firstDayOfMonthMinTimeStamp);
+        System.out.println("firstDayOfMonthMaxTimeStamp: " + firstDayOfMonthMaxTimeStamp);
+    }
+```
+
+
 
 
 
