@@ -1,12 +1,32 @@
-# 常用日期时间方法
+package com.ysx.utils.datetime;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 
+/**
+ * @author youngbear
+ * @email youngbear@aliyun.com
+ * @date 2022/8/21 21:58
+ * @blog https://blog.csdn.net/next_second
+ * @github https://github.com/YoungBear
+ * @description 日期时间常用方法
+ */
+public class CommonMethod {
 
-## 1. 使用plus方法获取n天/月/年后的时间
+    public static void main(String[] args) {
+//        // 时间计算：plus
+//        plusUsage();
+//        // 最大最小时间
+//        maxUsage();
 
-使用plus方法可以计算n小时/天/月/年后的时间。根据API的不同，所支持的单位也不同。
+        localDataWithUsage();
 
-```java
+    }
+
     /**
      * 使用plus方法获取n天/月/年后的时间
      */
@@ -38,45 +58,7 @@
                 + ", epochMilli: " + nowZonedDateTimePlus1Year.toInstant().toEpochMilli());
 
     }
-```
 
-打印记录为：
-
-```
-nowLocalDate: 2022-08-21
-nowLocalDatePlus1Day: 2022-08-22
-nowLocalDatePlus1Month: 2022-09-21
-nowLocalDatePlus1Year: 2023-08-21
-nowLocalDatePlus1Day2: 2022-08-22
-nowZonedDateTime: 2022-08-21T22:16:50.011+08:00[Asia/Shanghai], epochMilli: 1661091410011
-nowZonedDateTimePlus1Year: 2023-08-21T22:16:50.011+08:00[Asia/Shanghai], epochMilli: 1692627410011
-
-```
-
-LocalDate仅表示日期，所以不支持Hours等操作。同样，LocalTime仅表示时间，则不支持Day等操作。
-
-与plus操作相对应，minus表示减去对应的单位。
-
-常用API及支持的单位：
-
-| 类名           | API描述            | plus支持的单位                                           |
-| -------------- | ------------------ | -------------------------------------------------------- |
-| LocalDate      | 本地日期           | DAYS WEEKS MONTHS YEARS DECADES CENTURIES MILLENNIA      |
-| LocalTime      | 本地时间           | NANOS MICROS MILLIS SECONDS MINUTES HOURS HALF_DAYS      |
-| LocalDateTime  | 本地日期时间       | LocalDate和LocalTime的合集                               |
-| Instant        | 时间戳             | NANOS MICROS MILLIS SECONDS MINUTES HOURS HALF_DAYS DAYS |
-| ZonedDateTime  | 带时区的日期时间   | LocalDate和LocalTime的合集                               |
-| OffsetDateTime | 带偏移量的日期时间 | LocalDate和LocalTime的合集                               |
-
-
-
-
-
-## 2. 最大最小时间
-
-使用`java.time.temporal.Temporal#with(java.time.temporal.TemporalAdjuster)` 可以计算最大最小等时间。
-
-```java
     /**
      * 当天最小最大时间
      * 当月/当年第一天最后一天
@@ -112,51 +94,7 @@ LocalDate仅表示日期，所以不支持Hours等操作。同样，LocalTime仅
         System.out.println("nowLocalDateWithLastDayOfYear: " + nowLocalDateWithLastDayOfYear);
 
     }
-```
 
-打印结果为：
-
-```
-nowZonedDateTime: 2022-08-21T22:16:50.012+08:00[Asia/Shanghai], epochMilli: 1661091410012
-nowZonedDateTimeWithMinLocalTime: 2022-08-21T00:00+08:00[Asia/Shanghai], epochMilli: 1661011200000
-nowZonedDateTimeWithMaxLocalTime: 2022-08-21T23:59:59.999999999+08:00[Asia/Shanghai], epochMilli: 1661097599999
-nowLocalDate: 2022-08-21
-nowLocalDateWithFirstDayOfMonth: 2022-08-01
-nowLocalDateWithFirstDayOfYear: 2022-01-01
-nowLocalDateWithLastDayOfMonth: 2022-08-31
-nowLocalDateWithLastDayOfYear: 2022-12-31
-```
-
-
-
-### TemporalAdjusters 常用函数
-
-| 函数名                                                     | 描述                                   |
-| ---------------------------------------------------------- | -------------------------------------- |
-| dayOfWeekInMonth(int ordinal,DayOfWeek dayOfWeek)          | 获取当前月的第几个星期几               |
-| firstDayOfMonth()                                          | 当前月的第一天                         |
-| firstDayOfNextMonth()                                      | 下个月的第一天                         |
-| firstDayOfYear()                                           | 当前年的第一天                         |
-| firstDayOfNextYear()                                       | 第二年的第一天                         |
-| firstInMonth(DayOfWeek dayOfWeek)                          | 当前月的第一个星期几                   |
-| lastDayOfMonth()                                           | 当前月的最后一天                       |
-| lastDayOfYear()                                            | 当前年的最后一天                       |
-| lastInMonth(DayOfWeek dayOfWeek)                           | 当前月的最后一个星期几                 |
-| next(DayOfWeek dayOfWeek)                                  | 下一个星期几(可以跨月或者年)           |
-| nextOrSame(DayOfWeek dayOfWeek)                            | 下一个或者相同的星期几(如果和当前相同) |
-| previous(DayOfWeek dayOfWeek)                              | 上一个星期几                           |
-| previousOrSame(DayOfWeek dayOfWeek)                        | 上一个或者相同的星期几                 |
-| ofDateAdjuster(UnaryOperator<LocalDate> dateBasedAdjuster) | 自定义                                 |
-
-
-
-参考文档：
-
-https://docs.oracle.com/javase/8/docs/api/java/time/temporal/TemporalAdjusters.html
-
-eg.
-
-```java
     /**
      * localDate with 常见用法
      */
@@ -225,26 +163,5 @@ eg.
         System.out.println("previousOrSameMonday: " + previousOrSameMonday);
         System.out.println("plus2Days: " + plus2Days);
     }
-```
 
-
-
-
-
-# 相关文章
-
-## [1. LocalDateTime ZonedDateTime Instant 的相互转换](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/ConvertUtils.md)
-
-## [2. 日期时间格式化与解析](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/FormatterUtils.md)
-
-## [3. 带时区时间日期 ZonedDateTime](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/ZonedDateTimeUtils.md)
-
-## [4. 夏令时](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/dst.md)
-
-## [5. SimpleDateFormat 多线程存在的问题及解决方案](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/SimpleDateFormat.md)
-
-## [6. 常用日期时间方法](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/CommonMethod.md)
-
-
-
-# [源代码地址](https://github.com/YoungBear/JavaUtils)
+}
