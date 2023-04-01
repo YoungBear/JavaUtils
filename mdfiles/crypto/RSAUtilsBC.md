@@ -31,16 +31,16 @@ openssl pkey -in rsa_pss_private_3072_restricted_password.pem -out rsa_pss_publi
 ## 1. 引入pom依赖
 
 ```xml
-        <bouncycastle.version>1.69</bouncycastle.version>
+        <bouncycastle.version>1.72</bouncycastle.version>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
+            <artifactId>bcprov-jdk18on</artifactId>
             <version>${bouncycastle.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcpkix-jdk15on</artifactId>
+            <artifactId>bcpkix-jdk18on</artifactId>
             <version>${bouncycastle.version}</version>
         </dependency>
 ```

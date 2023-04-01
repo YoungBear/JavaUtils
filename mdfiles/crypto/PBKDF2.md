@@ -117,8 +117,8 @@ public class PBKDF2Practise {
 ```xml
 <dependency>
     <groupId>org.bouncycastle</groupId>
-    <artifactId>bcprov-jdk15on</artifactId>
-    <version>1.68</version>
+    <artifactId>bcprov-jdk18on</artifactId>
+    <version>1.72</version>
 </dependency>
 ```
 
