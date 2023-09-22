@@ -191,4 +191,5 @@ public @interface JsonAlias
 ### 4. 参考
 
 - [官方API文档 jackson-annotations](https://www.javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest/index.html)
+- [github地址](https://github.com/YoungBear/JavaUtils)
 
