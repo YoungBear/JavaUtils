@@ -23,6 +23,11 @@
         <commons-io.version>2.11.0</commons-io.version>
         <bouncycastle.version>1.75</bouncycastle.version>
         <openjdk.jmh.version>1.36</openjdk.jmh.version>
+        <jackson.version>2.14.3</jackson.version>
+
+        <!-- plugin -->
+        <maven-compiler.version>3.11.0</maven-compiler.version>
+        <maven-surefire.version>3.1.2</maven-surefire.version>
     </properties>
 
     <dependencies>
@@ -75,6 +80,12 @@
             <version>${openjdk.jmh.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -82,7 +93,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${maven-surefire.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                    <compilerVersion>${java.version}</compilerVersion>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <fork>true</fork>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                        <arg>-J-Dfile.encoding=UTF-8</arg>
+                    </compilerArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>
