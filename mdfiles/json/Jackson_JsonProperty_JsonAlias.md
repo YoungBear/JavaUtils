@@ -133,8 +133,8 @@ public class JsonPropertyJsonAliasTest {
 
 从验证程序可以得出以下结论：
 
-- @JsonProperty 和 @JsonAlias 均支持序列化（serialization）时自定义字段名称。
-- @JsonProperty 支持反序列化（deserialization）时自定义字段名称，而 @JsonAlias 不支持反序列化时自定义字段。
+- @JsonProperty 和 @JsonAlias 均支持反序列化（deserialization）时自定义字段名称。
+- @JsonProperty 支持序列化（serialization）时自定义字段名称，而 @JsonAlias 不支持序列化时自定义字段。
 - @JsonProperty 在反序列化时，仅支持自定义后的字段名称，不支持原有的字段名称；而 @JsonAlias 同时支持自定义和原有的字段名称。
 
 
@@ -160,7 +160,7 @@ public @interface JsonProperty
 
 **解释：**
 
-@JsonProperty 可以用在一个非静态的方法或者属性上，用来设置逻辑的属性名（序列化和反序列化）。
+@JsonProperty 可以用在一个非静态的方法或者属性上，用来设置逻辑的属性名（支持序列化和反序列化）。
 
 
 
