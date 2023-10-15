@@ -24,6 +24,9 @@
         <bouncycastle.version>1.75</bouncycastle.version>
         <openjdk.jmh.version>1.36</openjdk.jmh.version>
         <jackson.version>2.14.3</jackson.version>
+        <fastjson2.version>2.0.40</fastjson2.version>
+        <gson.version>2.10.1</gson.version>
+        <lombok.version>1.18.30</lombok.version>
 
         <!-- plugin -->
         <maven-compiler.version>3.11.0</maven-compiler.version>
@@ -85,6 +88,26 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${fastjson2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
 
