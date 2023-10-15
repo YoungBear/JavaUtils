@@ -47,7 +47,7 @@ public class JsonFieldOrderTest {
 
     @Test
     @DisplayName("使用@JSONType的orders属性指定字段顺序")
-    public void userJsonPropertyOrderTest() {
+    public void userJSONTypeTest() {
         Student3 student = new Student3();
         student.setName("John");
         student.setAge(25);
