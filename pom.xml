@@ -18,13 +18,13 @@
 
         <!-- 第三方软件版本 -->
         <junit5.version>5.10.0</junit5.version>
-        <logback.version>1.2.12</logback.version>
+        <logback.version>1.2.13</logback.version>
         <apache.commons.version>1.21</apache.commons.version>
         <commons-io.version>2.11.0</commons-io.version>
-        <bouncycastle.version>1.75</bouncycastle.version>
+        <bouncycastle.version>1.77</bouncycastle.version>
         <openjdk.jmh.version>1.36</openjdk.jmh.version>
         <jackson.version>2.14.3</jackson.version>
-        <fastjson2.version>2.0.40</fastjson2.version>
+        <fastjson2.version>2.0.46</fastjson2.version>
         <gson.version>2.10.1</gson.version>
         <lombok.version>1.18.30</lombok.version>
 
