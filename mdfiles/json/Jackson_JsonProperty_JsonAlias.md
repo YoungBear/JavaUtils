@@ -16,7 +16,7 @@ pom依赖：
 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
-    <version>2.14.3</version>
+    <version>2.17.1</version>
 </dependency>
 ```
 
