@@ -28,18 +28,17 @@ IPv4使用32位（4字节）地址，因此地址空间中只有4,294,967,296（
 
 所以每组数字的正则表达式为：
 
-```
-(\d)|([1-9]\d)|(1\d{2})|(2[0-4]\d)|(25[0-5])
-```
-
-注：每种情况务必加上`()`，因为元字符`|`对邻接的字符/字符集/子表达式都起作用。
-进而，IPv4的完整正则表达式为:
-
-```
-(((\d)|([1-9]\d)|(1\d{2})|(2[0-4]\d)|(25[0-5]))\.){3}((\d)|([1-9]\d)|(1\d{2})|(2[0-4]\d)|(25[0-5]))
+```shell
+\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5]
 ```
 
-对应java代码的正则为：
+其中， ```\d``` 和 ```[1-9]\d``` 可以合并为 ```[1-9]?\d``` 。再加上点号之后，加上起始和结尾的标记保证全匹配，则IPv4的完整正则表达式为:
+
+```shell
+^((\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])\.){3}(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])$
+```
+
+java代码中斜杠需要转移，则对应java代码的正则为：
 
 ```java
 String IP_V4 = "^(((\\d)|([1-9]\\d)|(1\\d{2})|(2[0-4]\\d)|(25[0-5]))\\.){3}((\\d)|([1-9]\\d)|(1\\d{2})|(2[0-4]\\d)|(25[0-5]))$"
@@ -57,16 +56,14 @@ import java.util.regex.Pattern;
 /**
  * @author youngbear
  * @email youngbear@aliyun.com
- * @date 2022-09-04 17:54
+ * @date 2025-03-30 17:54
  * @blog <a href="https://blog.csdn.net/next_second">...</a>
  * @github <a href="https://github.com/YoungBear">...</a>
  * @description IP校验
  */
 public class IPValidator {
 
-    private static final String IP_V4 = "^(((\\d)|([1-9]\\d)|(1\\d{2})|(2[0-4]\\d)|(25[0-5]))\\.){3}((\\d)|([1-9]\\d)|(1\\d{2})|(2[0-4]\\d)|(25[0-5]))$";
-    // 下边这个正则也ok
-    // private static final String IP_V4 = "^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$";
+    private static final String IP_V4 = "^((\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])\\.){3}(\\d|[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5])$";
     private static final Pattern IP_V4_PATTERN = Pattern.compile(IP_V4);
 
     /**
@@ -82,6 +79,7 @@ public class IPValidator {
         return IP_V4_PATTERN.matcher(input).matches();
     }
 }
+
 ```
 
 
@@ -102,26 +100,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author youngbear
  * @email youngbear@aliyun.com
- * @date 2022-09-04 17:58
+ * @date 2025-03-30 17:58
  * @blog <a href="https://blog.csdn.net/next_second">...</a>
  * @github <a href="https://github.com/YoungBear">...</a>
  * @description
  */
 public class IPValidatorTest {
 
-    @ParameterizedTest(name = "#{index} - Run test with IPv4 = {0}")
-    @MethodSource("validIPv4Provider")
-    void test_ipv4_regex_valid(String ipv4) {
-        assertTrue(IPValidator.isValidIpv4(ipv4));
-    }
-
-    @ParameterizedTest(name = "#{index} - Run test with IPv4 = {0}")
-    @MethodSource("invalidIPv4Provider")
-    void test_ipv4_regex_invalid(String ipv4) {
-        assertFalse(IPValidator.isValidIpv4(ipv4));
-    }
-
-    static Stream<String> validIPv4Provider() {
+    private static Stream<String> validIPv4Provider() {
         return Stream.of(
                 "0.0.0.0",
                 "0.0.0.1",
@@ -136,8 +122,9 @@ public class IPValidatorTest {
                 "100.100.100.100");
     }
 
-    static Stream<String> invalidIPv4Provider() {
+    private static Stream<String> invalidIPv4Provider() {
         return Stream.of(
+                null,
                 "000.000.000.000",          // leading 0
                 "00.00.00.00",              // leading 0
                 "1.2.3.04",                 // leading 0
@@ -158,6 +145,18 @@ public class IPValidatorTest {
                 "1..1",                     // empty between .
                 "1.1.1.1.",                 // last .
                 "");                        // empty
+    }
+
+    @ParameterizedTest(name = "#{index} - Run test with IPv4 = {0}")
+    @MethodSource("validIPv4Provider")
+    void test_ipv4_regex_valid(String ipv4) {
+        assertTrue(IPValidator.isValidIpv4(ipv4));
+    }
+
+    @ParameterizedTest(name = "#{index} - Run test with IPv4 = {0}")
+    @MethodSource("invalidIPv4Provider")
+    void test_ipv4_regex_invalid(String ipv4) {
+        assertFalse(IPValidator.isValidIpv4(ipv4));
     }
 }
 
