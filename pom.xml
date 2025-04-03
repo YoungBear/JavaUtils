@@ -18,7 +18,8 @@
         <!-- 第三方软件版本 -->
 
         <logback.version>1.2.13</logback.version>
-        <apache.commons.compress.version>1.26.2</apache.commons.compress.version>
+        <apache.commons.commons-text.version>1.13.0</apache.commons.commons-text.version>
+        <apache.commons.compress.version>1.27.1</apache.commons.compress.version>
         <commons-io.version>2.18.0</commons-io.version>
         <bouncycastle.version>1.80</bouncycastle.version>
         <openjdk.jmh.version>1.37</openjdk.jmh.version>
@@ -28,7 +29,7 @@
         <lombok.version>1.18.36</lombok.version>
 
         <!-- 单元测试 -->
-        <junit5.version>5.10.2</junit5.version>
+        <junit5.version>5.11.4</junit5.version>
         <!-- 5.xx 版本需要 JDK 11以上 故使用 4.11.0 版本 -->
         <mockito-inline.version>4.11.0</mockito-inline.version>
 
@@ -43,6 +44,13 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${apache.commons.commons-text.version}</version>
         </dependency>
 
         <dependency>
