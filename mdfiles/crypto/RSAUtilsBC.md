@@ -31,7 +31,7 @@ openssl pkey -in rsa_pss_private_3072_restricted_password.pem -out rsa_pss_publi
 ## 1. 引入pom依赖
 
 ```xml
-        <bouncycastle.version>1.75</bouncycastle.version>
+        <bouncycastle.version>1.80</bouncycastle.version>
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk18on</artifactId>
