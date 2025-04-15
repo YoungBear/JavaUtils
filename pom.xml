@@ -148,7 +148,6 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
-                    <compilerVersion>${java.version}</compilerVersion>
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <fork>true</fork>
                     <compilerArgs>
