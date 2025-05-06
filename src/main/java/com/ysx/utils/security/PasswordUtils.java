@@ -51,12 +51,11 @@ public class PasswordUtils {
      * @return 是否满足强度要求
      */
     public static boolean isValid(String input) {
-        if (input == null || input.equals("")) {
+        if (input == null || input.isEmpty()) {
             return false;
         }
         return PATTERN_VALID_PASSWORD.matcher(input).matches();
     }
-
 
     /**
      * 生成随机密码
