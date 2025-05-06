@@ -11,6 +11,7 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -51,8 +52,15 @@ public class CyclicBarrierTest {
     private static final int CORE_POOL_SIZE = 5;
 
     // 线程池
-    private static final ExecutorService THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(CORE_POOL_SIZE, CORE_POOL_SIZE * 2,
-            10, TimeUnit.SECONDS, new LinkedBlockingDeque<>(1000));
+    private static final ExecutorService THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(
+            CORE_POOL_SIZE, // 核心线程数（长期保持的线程数）
+            CORE_POOL_SIZE * 2, // 最大线程数（允许同时运行的最大线程数）
+            10, // 非核心线程空闲时的存活时间
+            TimeUnit.SECONDS, // 时间单位（如 TimeUnit.SECONDS）
+            new LinkedBlockingDeque<>(1000), // 任务队列（任务等待执行的队列）
+            Executors.defaultThreadFactory(), // 线程工厂（可自定义线程名称等）
+            new ThreadPoolExecutor.CallerRunsPolicy() // 拒绝策略（任务无法执行时的处理方式）
+    );
 
     /**
      * 使用一个休眠函数，模拟实际业务的计算，并且等待其他线程的结束
