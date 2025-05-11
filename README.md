@@ -61,6 +61,8 @@
 
 [5. MAC地址](./mdfiles/pattern/MacAddress.md)
 
+[6. 断言](./mdfiles/pattern/Assertion.md)
+
 
 
 ## 5. 日志
