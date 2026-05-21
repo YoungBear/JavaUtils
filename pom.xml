@@ -30,6 +30,7 @@
 
         <!-- 单元测试 -->
         <junit5.version>5.11.4</junit5.version>
+        <junit-platform.version>1.11.4</junit-platform.version>
         <!-- 5.xx 版本需要 JDK 11以上 故使用 4.11.0 版本 -->
         <mockito-inline.version>4.11.0</mockito-inline.version>
 
@@ -118,6 +119,13 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit5.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit-platform.version}</version>
             <scope>test</scope>
         </dependency>
 
