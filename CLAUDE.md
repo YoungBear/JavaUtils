@@ -36,7 +36,7 @@ mvn clean package
 src/main/java/com/ysx/utils/
 ├── crypto/       # 加解密相关 (RSA、AES、MAC、MessageDigest、Base64)
 ├── datetime/     # 日期时间处理
-├── file/         # 文件操作
+├── file/         # 文件操作 (TextFileReader 支持自动识别编码读取)
 ├── pattern/      # 正则表达式、UUID、版本号、IP验证
 ├── security/     # 安全相关 (密码工具类)
 └── threadpool/   # 线程池配置
@@ -50,6 +50,7 @@ src/test/java/com/ysx/utils/
 ├── datetime/     # 日期时间测试
 ├── log/          # 日志测试
 ├── mockito/      # Mockito 测试示例
+├── file/        # 文件操作测试 (TextFileReader)
 ├── pattern/      # 正则表达式测试
 ├── security/     # 安全测试
 └── threadpool/   # 线程池测试

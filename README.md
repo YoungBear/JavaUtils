@@ -4,6 +4,8 @@
 
 [1. 解压缩文件](./mdfiles/file/DecompressUtils.md)
 
+[2. 文本文件读取 - 自动识别编码](./mdfiles/file/TextFileReader.md)
+
 
 
 ## 2. 加解密相关
