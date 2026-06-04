@@ -79,6 +79,8 @@
 
 [2. 设置Json序列化时字段的顺序](./mdfiles/json/JsonFieldOrder.md)
 
+[3. Jackson 中的 @JsonIgnoreProperties(ignoreUnknown = true) 的用法](./mdfiles/json/Jackson_JsonIgnoreProperties.md)
+
 
 
 ## 7. 单元测试
