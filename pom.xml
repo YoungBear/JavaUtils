@@ -168,8 +168,12 @@
                     <fork>true</fork>
                     <compilerArgs>
                         <arg>-Xlint:all</arg>
-                        <arg>-J-Dfile.encoding=UTF-8</arg>
                     </compilerArgs>
+                    <forkOptions>
+                        <jvmArgs>
+                            <arg>-Dfile.encoding=UTF-8</arg>
+                        </jvmArgs>
+                    </forkOptions>
                 </configuration>
             </plugin>
         </plugins>
