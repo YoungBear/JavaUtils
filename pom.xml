@@ -17,11 +17,11 @@
 
         <!-- 第三方软件版本 -->
 
-        <logback.version>1.4.14</logback.version>
+        <logback.version>1.5.38</logback.version>
         <apache.commons.commons-text.version>1.13.0</apache.commons.commons-text.version>
-        <apache.commons.compress.version>1.27.1</apache.commons.compress.version>
+        <apache.commons.compress.version>1.28.0</apache.commons.compress.version>
         <commons-io.version>2.18.0</commons-io.version>
-        <bouncycastle.version>1.80</bouncycastle.version>
+        <bouncycastle.version>1.84</bouncycastle.version>
         <openjdk.jmh.version>1.37</openjdk.jmh.version>
         <jackson.version>2.18.9</jackson.version>
         <fastjson2.version>2.0.56</fastjson2.version>
