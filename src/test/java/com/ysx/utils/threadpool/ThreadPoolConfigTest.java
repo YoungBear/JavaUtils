@@ -2,9 +2,6 @@ package com.ysx.utils.threadpool;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -18,44 +15,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ThreadPoolConfigTest {
 
     @Test
-    public void testCalculateCorePoolCount_whenCpuCoreCountIsLessThan10() throws Exception {
-        setCpuCoreCount(4);
-        int result = ThreadPoolConfig.calculateCorePoolCount();
+    public void testCalculateCorePoolCount_whenCpuCoreCountIsLessThan10() {
+        int result = ThreadPoolConfig.calculateCorePoolCount(4);
         assertEquals(4, result);
     }
 
     @Test
-    public void testCalculateCorePoolCount_whenCpuCoreCountIsGreaterThan10() throws Exception {
-        setCpuCoreCount(16);
-        int result = ThreadPoolConfig.calculateCorePoolCount();
+    public void testCalculateCorePoolCount_whenCpuCoreCountIsGreaterThan10() {
+        int result = ThreadPoolConfig.calculateCorePoolCount(16);
         assertEquals(10, result);
     }
 
     @Test
-    public void testCalculateCorePoolCount_whenCpuCoreCountIs10() throws Exception {
-        setCpuCoreCount(10);
-        int result = ThreadPoolConfig.calculateCorePoolCount();
+    public void testCalculateCorePoolCount_whenCpuCoreCountIs10() {
+        int result = ThreadPoolConfig.calculateCorePoolCount(10);
         assertEquals(10, result);
     }
-
-
-    /**
-     * 通过反射设置final字段的值
-     *
-     * @param value 待设置的值
-     * @throws Exception 异常
-     */
-    private void setCpuCoreCount(int value) throws Exception {
-        Field field = ThreadPoolConfig.class.getDeclaredField("CPU_CORE_COUNT");
-        field.setAccessible(true);
-
-        // 移除final修饰符
-        Field modifiersField = Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-
-        field.set(null, value);
-    }
-
-
 }

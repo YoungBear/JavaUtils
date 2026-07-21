@@ -9,9 +9,6 @@ package com.ysx.utils.threadpool;
  * @description 线程池配置
  */
 public class ThreadPoolConfig {
-    // 获取虚拟机（JVM）运行时环境下的可用 CPU 核心数量
-    private static final int CPU_CORE_COUNT = Runtime.getRuntime().availableProcessors();
-
 
     /**
      * 计算核心线程数
@@ -19,6 +16,16 @@ public class ThreadPoolConfig {
      * @return core pool count
      */
     public static int calculateCorePoolCount() {
-        return Math.min(CPU_CORE_COUNT, 10);
+        return calculateCorePoolCount(Runtime.getRuntime().availableProcessors());
+    }
+
+    /**
+     * 计算核心线程数
+     *
+     * @param cpuCoreCount CPU核心数
+     * @return core pool count
+     */
+    static int calculateCorePoolCount(int cpuCoreCount) {
+        return Math.min(cpuCoreCount, 10);
     }
 }

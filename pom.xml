@@ -6,18 +6,18 @@
 
     <groupId>com.ysx</groupId>
     <artifactId>utils</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
 
         <!-- 第三方软件版本 -->
 
-        <logback.version>1.2.13</logback.version>
+        <logback.version>1.4.14</logback.version>
         <apache.commons.commons-text.version>1.13.0</apache.commons.commons-text.version>
         <apache.commons.compress.version>1.27.1</apache.commons.compress.version>
         <commons-io.version>2.18.0</commons-io.version>
@@ -31,8 +31,7 @@
         <!-- 单元测试 -->
         <junit5.version>5.11.4</junit5.version>
         <junit-platform.version>1.11.4</junit-platform.version>
-        <!-- 5.xx 版本需要 JDK 11以上 故使用 4.11.0 版本 -->
-        <mockito-inline.version>4.11.0</mockito-inline.version>
+        <mockito-core.version>5.14.2</mockito-core.version>
 
         <!-- plugin -->
         <maven-compiler.version>3.14.0</maven-compiler.version>
@@ -131,8 +130,8 @@
 
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-inline</artifactId>
-            <version>${mockito-inline.version}</version>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-core.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -151,12 +150,10 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler.version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <release>${java.version}</release>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
-                    <compilerArgument>-Xlint:all</compilerArgument>
                     <fork>true</fork>
                     <compilerArgs>
                         <arg>-Xlint:all</arg>
