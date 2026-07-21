@@ -23,7 +23,7 @@
         <commons-io.version>2.18.0</commons-io.version>
         <bouncycastle.version>1.80</bouncycastle.version>
         <openjdk.jmh.version>1.37</openjdk.jmh.version>
-        <jackson.version>2.18.3</jackson.version>
+        <jackson.version>2.18.9</jackson.version>
         <fastjson2.version>2.0.56</fastjson2.version>
         <gson.version>2.12.1</gson.version>
         <lombok.version>1.18.36</lombok.version>
