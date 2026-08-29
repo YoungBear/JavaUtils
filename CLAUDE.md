@@ -103,7 +103,7 @@ src/test/resources/
 
 ## 技术栈
 
-- **Java 版本**: 1.8
+- **Java 版本**: 21
 - **构建工具**: Maven
 - **测试框架**: JUnit 5 (Jupiter) + JUnit Platform Launcher + Mockito (inline)
 - **日志**: Logback
